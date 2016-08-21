@@ -5,14 +5,16 @@ var router = express.Router();
 var passport = require('passport');
 module.exports = router;
 
-router.post('/signup',    passport.authenticate('signup',{
-        successRedirect: '/',
-        failureRedirect: '/signup',
-        failureFlash: true
-    }));
+router.post('/signup',passport.authenticate('signup',{
+    }),
+    function(req,res){
+        res.json({message:"Success", username: req.user.username});
+    }
+);
 
 router.post('/login',passport.authenticate('login',{
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}));
+    }),
+    function(req,res){
+        res.json({message:"Success", username: req.user.username});
+    }
+);

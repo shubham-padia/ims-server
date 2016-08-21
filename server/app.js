@@ -11,7 +11,7 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 require('./auth/index');
-app.use(bodyparser.urlencoded({extended : true}));
+app.use(bodyparser.json());
 
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
