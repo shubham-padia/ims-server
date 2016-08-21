@@ -7,7 +7,8 @@ module.exports = mongoose.model('user',{
         type: Schema.ObjectId,
         ref: 'user'
     },
+    username: String,
+    password: String,
     name: String,
-    email: String,
-    password: String
+    email: String
 });

@@ -12,6 +12,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "flash": "^1.1.0",
     "lodash": "^4.15.0",
     "mongoose": "^4.5.9",
     "passport": "^0.3.2",
