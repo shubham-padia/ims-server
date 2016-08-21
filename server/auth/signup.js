@@ -1,26 +1,29 @@
 'use strict';
 
-var signup = require('passport-local').Strategy;
+var localStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../schemas/user');
+var uuid = require('node-uuid');
 
 module.exports = function(passport){
     var createHash = function(password){
-        return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null); 
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null); 
     };
 
     passport.use('signup',new localStrategy({
         passReqToCallback: true
-    })),
+    },
     function(req,username,password,done){
+        console.log("we're here");
         User.findOne({ 'username' : username},function(err,user){
             if(err){
-                return done(err,req.flash('message','Error signing you up'));
+                return done(err,console.log('Error signing you up'));
             }
             if(user){
-                return done(null, false, req.flash('message','The specified username already exists'));
+                return done(null, false, console.log('The specified username already exists'));
             } else{
                 var newUser = User();
+                newUser.id = uuid.v4();
                 newUser.name = req.params.name;
                 newUser.email = req.params.email;
                 newUser.username = username;
@@ -29,12 +32,11 @@ module.exports = function(passport){
 
             newUser.save(function(err){
                 if(err){
-                    console.log("error saving the user");
-                    return done(null, false, req.flash('message','Error saving your details'));
+                    return done(err, false, console.log('Error saving your details'));
                 } else {
-                    return done(null, newUser, req.flash('message','Registration Successful'));
+                    return done(null, newUser, console.log('Registration Successful'));
                 }
             })
         })
-    }
+    }));
 };
