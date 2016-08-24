@@ -10,6 +10,7 @@ var routes = require('./routes');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
+var mUpload = require('./api/upload/index');
 require('./auth/index');
 app.use(bodyparser.json());
 
@@ -28,6 +29,7 @@ passportInit(passport);
 
 //main routes
 app.use('/api/',routes);
+app.use('/api/',mUpload);
 
 app.listen( config.port, function(){
     console.log(" app has started listening on " + config.port );

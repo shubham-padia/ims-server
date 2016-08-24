@@ -2,7 +2,7 @@
   "name": "ims",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
     "lodash": "^4.15.0",
     "mongodb": "^2.2.7",
     "mongoose": "^4.5.9",
+    "multer": "^1.2.0",
     "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0"
