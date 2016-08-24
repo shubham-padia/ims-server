@@ -2,9 +2,10 @@
 logs
 *.log
 npm-debug.log*
+.vscode
 
 #uploads
-server/public/uploads
+public/uploads
 # Runtime data
 pids
 *.pid
