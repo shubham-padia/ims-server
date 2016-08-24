@@ -1,4 +1,6 @@
 var express = require('express');
+var userImg = require('../../schemas/userImg');
+var mongoose = require('mongoose');
 
 //multer
 var multer  = require('multer');
@@ -36,6 +38,27 @@ router.post('/upload',authCheck, function (req, res) {
         if(err || req.mimeTypeError){
             return res.json({success: false});
         }
+        
+        console.log(req.user.id);
+        console.log(req.filename);
+        console.log(req.path);
+        console.log();
+        console.log();
+
+        newUserImg = userImg();
+        newUserImg.userId = req.user.id;
+        newUserImg.filename = req.file.filename;
+        newUserImg.path = req.file.path;
+        newUserImg.size = req.file.size;
+        newUserImg.originalname = req.file.originalname;
+
+        newUserImg.save(function(err){
+            if(err){
+                return err;
+            }
+            return console.log('filesaved');
+        });
+
         res.json(req.file);
     });
 });
