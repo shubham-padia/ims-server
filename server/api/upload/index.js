@@ -1,31 +1,44 @@
 var express = require('express');
+
+//multer
 var multer  = require('multer');
 var upload = multer({ 
     dest: 'server/public/uploads/',
     limits: {
         fileSize: 1024 * 3072
     },
-    rename: function(fieldname, filename) {
-        return filename;
-    },
-    onFileUploadStart: function(file) {
-        console.log('uploading the specified file');
-        if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png' && file.mimetype !== 'image/jpeg') {
+    fileFilter: function fileFilter (req,file, cb) {
+    if(file.mimetype !== 'image/jpeg' && file.mimetype !== 'image/png' && file.mimetype !== 'image/jpeg') {
             console.log("enter a valid image file");
-            return false;
+            req.mimeTypeError = 'mimeTypeError';
+            return cb(null, false, new Error('mimeTypeError'));
         }
-    }});
+    return cb(null, true);
+    }
+});
 
+//
 var router = express.Router();
 module.exports = router;
+//
 
-router.post('/upload',function (req, res) {
+//authentication
+var authCheck = function (req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+    res.json({access: "unauthorized"});    
+};
+//
+
+//
+router.post('/upload',authCheck, function (req, res) {
     upload.single('fileUpload')(req, res, function (err) {
-        if(err){
-            return res.end('{"status": "fail"}');
+        if(err || req.mimeTypeError){
+            return res.json({success: false});
         }
-        res.end(req.file);
+        res.json(req.file);
     });
-    
 });
+    
+
 
