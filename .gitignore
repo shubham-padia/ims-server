@@ -3,6 +3,8 @@ logs
 *.log
 npm-debug.log*
 
+#uploads
+server/public/uploads
 # Runtime data
 pids
 *.pid
