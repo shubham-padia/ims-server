@@ -1,11 +1,25 @@
+'use strict';
 var express = require('express');
 var userImg = require('../../schemas/userImg');
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+var mime = require('mime');
 
 //multer
 var multer  = require('multer');
+var multerStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/uploads/')
+  },
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.extension(file.mimetype));
+    });
+  }
+});
+
 var upload = multer({ 
-    dest: 'public/uploads/',
+    storage: multerStorage,
     limits: {
         fileSize: 1024 * 3072
     },
@@ -18,7 +32,6 @@ var upload = multer({
     return cb(null, true);
     }
 });
-
 //
 var router = express.Router();
 module.exports = router;
@@ -39,7 +52,7 @@ router.post('/upload',authCheck, function (req, res) {
             return res.json({success: false});
         }
 
-        newUserImg = userImg();
+        var newUserImg = userImg();
         newUserImg.userId = req.user.id;
         newUserImg.filename = req.file.filename;
         newUserImg.desc = req.body.desc;

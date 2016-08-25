@@ -9,16 +9,22 @@ var dbConfig = require('./config/db');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
+
 //routes
 var routes = require('./routes');
 var mUpload = require('./api/upload/index');
 var img = require('./api/img')
 //
-require('./auth/index');
-app.use(bodyparser.json());
 
+//place generic stuff here
+app.use(bodyparser.json());
+app.use('/api/',express.static('public'));
+//
+
+//mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(dbConfig.url);
+//
 
 //passport part
 app.use(require('express-session')({
