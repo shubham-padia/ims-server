@@ -56,6 +56,7 @@ router.post('/upload',authCheck, function (req, res) {
         newUserImg.userId = req.user.id;
         newUserImg.filename = req.file.filename;
         newUserImg.desc = req.body.desc;
+        newUserImg.privacy = req.body.privacy;
         newUserImg.path = req.file.path;
         newUserImg.size = req.file.size;
         newUserImg.originalname = req.file.originalname;

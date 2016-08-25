@@ -13,12 +13,12 @@ var bodyparser = require('body-parser');
 //routes
 var routes = require('./routes');
 var mUpload = require('./api/upload/index');
-var img = require('./api/img')
+var img = require('./api/img');
+var getImg = require('./api/getImg');
 //
 
 //place generic stuff here
 app.use(bodyparser.json());
-app.use('/api/',express.static('public'));
 //
 
 //mongoose
@@ -40,6 +40,8 @@ passportInit(passport);
 app.use('/api/',routes);
 app.use('/api/',mUpload);
 app.use('/api/',img);
+app.use('/api/',getImg);
+//
 
 app.listen( config.port, function(){
     console.log(" app has started listening on " + config.port );
