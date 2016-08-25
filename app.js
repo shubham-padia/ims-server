@@ -6,11 +6,14 @@ var express = require('express');
 var app = express();
 var config = require('./config/config');
 var dbConfig = require('./config/db');
-var routes = require('./routes');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
+//routes
+var routes = require('./routes');
 var mUpload = require('./api/upload/index');
+var img = require('./api/img')
+//
 require('./auth/index');
 app.use(bodyparser.json());
 
@@ -30,6 +33,7 @@ passportInit(passport);
 //main routes
 app.use('/api/',routes);
 app.use('/api/',mUpload);
+app.use('/api/',img);
 
 app.listen( config.port, function(){
     console.log(" app has started listening on " + config.port );
