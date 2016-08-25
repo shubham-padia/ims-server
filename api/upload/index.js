@@ -46,7 +46,7 @@ var authCheck = function (req, res, next) {
 //
 
 //
-router.post('/upload',authCheck, function (req, res) {
+router.post('/',authCheck, function (req, res) {
     upload.single('fileUpload')(req, res, function (err) {
         if(err || req.mimeTypeError){
             return res.json({success: false});
@@ -68,7 +68,7 @@ router.post('/upload',authCheck, function (req, res) {
             return console.log('filesaved');
         });
 
-        res.json(req.file);
+        res.json({filename: req.file.filename});
     });
 });
     

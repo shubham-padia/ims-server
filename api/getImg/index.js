@@ -6,7 +6,7 @@ var UserImg = require('../../schemas/userImg');
 var path = require('path');
 module.exports = router;
 
-router.get('/getImg/:filename', function(req,res,next){
+router.get('/:filename', function(req,res,next){
 
         UserImg.find({ 'filename': req.params.filename},function(err, img){
             

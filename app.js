@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 
 //routes
-var routes = require('./routes');
+var authRoutes = require('./auth/routes');
 var mUpload = require('./api/upload/index');
 var img = require('./api/img');
 var getImg = require('./api/getImg');
@@ -37,10 +37,10 @@ passportInit(passport);
 //passport part ends
 
 //main routes
-app.use('/api/',routes);
-app.use('/api/',mUpload);
-app.use('/api/',img);
-app.use('/api/',getImg);
+app.use('/api/',authRoutes);
+app.use('/api/upload/',mUpload);
+app.use('/api/img/',img);
+app.use('/api/getImg',getImg);
 //
 
 app.listen( config.port, function(){
