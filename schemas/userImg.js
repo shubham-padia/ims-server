@@ -9,5 +9,6 @@ module.exports = mongoose.model('userImg',{
     desc: String,
     path: String,
     size: String,
+    privacy: Number,
     originalname: String     
 });

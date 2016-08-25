@@ -13,6 +13,7 @@ var authCheck = function (req, res, next) {
 };
 //
 
+
 router.get('/img/userId',authCheck,function(req, res, next){
     userImg.find({ 'userId': req.user.id}, function(err, imgList){
         if(err){
