@@ -24,8 +24,8 @@ module.exports = function(passport){
             } else{
                 var newUser = User();
                 newUser.id = uuid.v4();
-                newUser.name = req.params.name;
-                newUser.email = req.params.email;
+                newUser.name = req.body.name;
+                newUser.email = req.body.email;
                 newUser.username = username;
                 newUser.password = createHash(password);
             }

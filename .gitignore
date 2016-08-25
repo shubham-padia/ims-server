@@ -6,6 +6,7 @@ npm-debug.log*
 
 #uploads
 public/uploads
+
 # Runtime data
 pids
 *.pid

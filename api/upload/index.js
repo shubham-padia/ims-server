@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 //multer
 var multer  = require('multer');
 var upload = multer({ 
-    dest: 'server/public/uploads/',
+    dest: 'public/uploads/',
     limits: {
         fileSize: 1024 * 3072
     },
@@ -38,16 +38,11 @@ router.post('/upload',authCheck, function (req, res) {
         if(err || req.mimeTypeError){
             return res.json({success: false});
         }
-        
-        console.log(req.user.id);
-        console.log(req.filename);
-        console.log(req.path);
-        console.log();
-        console.log();
 
         newUserImg = userImg();
         newUserImg.userId = req.user.id;
         newUserImg.filename = req.file.filename;
+        newUserImg.desc = req.body.desc;
         newUserImg.path = req.file.path;
         newUserImg.size = req.file.size;
         newUserImg.originalname = req.file.originalname;
