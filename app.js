@@ -30,7 +30,7 @@ mongoose.connect(dbConfig.url);
 
 //passport part
 app.use(require('express-session')({
-    secret:'ims', resave: false, saveUninitialized:false
+    secret: 'ims', resave: false, saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -39,15 +39,15 @@ passportInit(passport);
 //passport part ends
 
 //main routes
-app.use('/api/',authRoutes);
-app.use('/api/upload/',mUpload);
-app.use('/api/',img);
-app.use('/api/getImg/',getImg);
-app.use('/api/',vote);
-app.use('/api/getVote',getVote);
+app.use('/api/', authRoutes);
+app.use('/api/upload/', mUpload);
+app.use('/api/', img);
+app.use('/api/getImg/', getImg);
+app.use('/api/', vote);
+app.use('/api/getVote', getVote);
 //
 
-app.listen( config.port, function(){
-    console.log(" app has started listening on " + config.port );
+app.listen(config.port, function () {
+    console.log(" app has started listening on " + config.port);
 });
 

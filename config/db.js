@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-    'url' : 'mongodb://127.0.0.1/imsUsers'
+    'url': 'mongodb://127.0.0.1/imsUsers'
 }
