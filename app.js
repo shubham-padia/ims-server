@@ -40,7 +40,7 @@ passportInit(passport);
 //main routes
 app.use('/api/',authRoutes);
 app.use('/api/upload/',mUpload);
-app.use('/api/img/',img);
+app.use('/api/',img);
 app.use('/api/getImg/',getImg);
 app.use('/api/',vote);
 //

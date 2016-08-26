@@ -5,6 +5,7 @@ var router = express.Router();
 module.exports = router;
 var Vote = require('../../schemas/vote');
 
+
 //authentication
 var authCheck = function (req, res, next) {
 	if (req.isAuthenticated())
@@ -31,9 +32,10 @@ router.post('/upvote/:imgName',authCheck,function(req, res , next){
                 res.json({success: true});
             });
        } else {
-            upv[0].vote = 1;
+            var newVote = upv[0];
+            newVote.vote = 1;
 
-            upv[0].save(function(err){
+            newVote.save(function(err){
                 if(err){
                     return res.json({success: false});
                 }
@@ -62,9 +64,9 @@ router.post('/downvote/:imgName',authCheck,function(req, res , next){
                 res.json({success: true});
             });
        } else {
-            upv[0].vote = -1;
-
-            upv[0].save(function(err){
+            var newVote = upv[0];
+            newVote.vote = -1;
+            newVote.save(function(err){
                 if(err){
                     return res.json({success: false});
                 }

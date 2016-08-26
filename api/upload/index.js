@@ -45,7 +45,6 @@ var authCheck = function (req, res, next) {
 };
 //
 
-//
 router.post('/',authCheck, function (req, res) {
     upload.single('fileUpload')(req, res, function (err) {
         if(err || req.mimeTypeError){

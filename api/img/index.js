@@ -13,13 +13,20 @@ var authCheck = function (req, res, next) {
 };
 //
 
-
-router.get('/userId',authCheck,function(req, res, next){
+router.get('/myImg',authCheck,function(req, res, next){
     userImg.find({ 'userId': req.user.id}, function(err, imgList){
         if(err){
-            return res.json({success: 404 });
+            return res.json({success: false });
         }
-        console.log(req.params.id);
         res.json(imgList);
-    })
+    });
 });
+
+router.get('/userId/:userId',authCheck,function( req, res, next){
+    userImg.find({ 'userId': req.params.userId,$or:[{'privacy' : 0},{'privacy' : 1}]  },function(err, imgList){
+            if(err){
+                return res.json({success: false});
+            }
+            res.json(imgList);
+    });
+});  
