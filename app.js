@@ -17,6 +17,7 @@ var img = require('./api/img');
 var getImg = require('./api/getImg');
 var vote = require('./api/vote/index');
 var getVote = require('./api/vote/getVote');
+var editImg = require('./api/edit/editImg');
 //
 
 //place generic stuff here
@@ -36,7 +37,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 var passportInit = require('./auth/index');
 passportInit(passport);
-//passport part ends
+//
 
 //main routes
 app.use('/api/', authRoutes);
@@ -45,9 +46,9 @@ app.use('/api/', img);
 app.use('/api/getImg/', getImg);
 app.use('/api/', vote);
 app.use('/api/getVote', getVote);
+app.use('/api/edit/', editImg);
 //
 
 app.listen(config.port, function () {
     console.log(" app has started listening on " + config.port);
 });
-
