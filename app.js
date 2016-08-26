@@ -15,6 +15,7 @@ var authRoutes = require('./auth/routes');
 var mUpload = require('./api/upload/index');
 var img = require('./api/img');
 var getImg = require('./api/getImg');
+var vote = require('./api/vote/index');
 //
 
 //place generic stuff here
@@ -40,7 +41,8 @@ passportInit(passport);
 app.use('/api/',authRoutes);
 app.use('/api/upload/',mUpload);
 app.use('/api/img/',img);
-app.use('/api/getImg',getImg);
+app.use('/api/getImg/',getImg);
+app.use('/api/',vote);
 //
 
 app.listen( config.port, function(){
