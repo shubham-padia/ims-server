@@ -22,11 +22,20 @@ router.get('/myImg', authCheck, function (req, res, next) {
     });
 });
 
-router.get('/userId/:userId', authCheck, function (req, res, next) {
-    userImg.find({ 'userId': req.params.userId, $or: [{ 'privacy': 0 }, { 'privacy': 1 }] }, function (err, imgList) {
-        if (err) {
-            return res.json({ success: false });
-        }
-        res.json(imgList);
-    });
+router.get('/userId/:userId', function (req, res, next) {
+    if (req.user) {
+        userImg.find({ 'userId': req.params.userId, $or: [{ 'privacy': 0 }, { 'privacy': 1 }] }, function (err, imgList) {
+            if (err) {
+                return res.json({ success: false });
+            }
+            res.json(imgList);
+        })
+    } else {
+        userImg.find({ 'userId': req.params.userId, 'privacy': 0 }, function (err, imgList) {
+            if (err) {
+                return res.json({ success: false });
+            }
+            res.json(imgList);
+        });
+    }
 });  
