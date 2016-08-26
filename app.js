@@ -16,6 +16,7 @@ var mUpload = require('./api/upload/index');
 var img = require('./api/img');
 var getImg = require('./api/getImg');
 var vote = require('./api/vote/index');
+var getVote = require('./api/vote/getVote');
 //
 
 //place generic stuff here
@@ -43,6 +44,7 @@ app.use('/api/upload/',mUpload);
 app.use('/api/',img);
 app.use('/api/getImg/',getImg);
 app.use('/api/',vote);
+app.use('/api/getVote',getVote);
 //
 
 app.listen( config.port, function(){
