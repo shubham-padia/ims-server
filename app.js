@@ -44,7 +44,7 @@ passportInit(passport);
 app.use('/api/', authRoutes);
 app.use('/api/upload/', mUpload);
 app.use('/api/', img);
-app.use('/api/getImg/', getImg);
+app.use('/api/view/', getImg);
 app.use('/api/', vote);
 app.use('/api/getVote', getVote);
 app.use('/api/edit/', editImg);
