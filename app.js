@@ -18,6 +18,7 @@ var getImg = require('./api/getImg');
 var vote = require('./api/vote/index');
 var getVote = require('./api/vote/getVote');
 var editImg = require('./api/edit/editImg');
+var delImg = require('./api/delete/delImg')
 //
 
 //place generic stuff here
@@ -47,6 +48,7 @@ app.use('/api/getImg/', getImg);
 app.use('/api/', vote);
 app.use('/api/getVote', getVote);
 app.use('/api/edit/', editImg);
+app.use('/api/del/',delImg);
 //
 
 app.listen(config.port, function () {
