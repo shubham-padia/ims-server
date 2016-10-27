@@ -5,7 +5,7 @@ IMS is an Image Management System based on 3 privacy Status for each image which
 * Restricted ( only visible to the registered users ) - `1`
 * Private ( only visible to the owner of the image ) -  `any numeric value except 0 & 1`
 
-***NOTE*** : Voting System is disabled for private images 
+***NOTE*** : Voting System is disabled for private images.
 
 This api is completely built from scratch and uses Express framework for Node.js and uses MongoDB for storing data.
 
