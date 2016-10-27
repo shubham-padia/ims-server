@@ -1,6 +1,6 @@
 # IMS ( A Privacy Based Image Management System API with a voting system )
 
-IMS is an Image Management System based on Three Privacy Status for each image which also provides the feature of upvote and downvote for each image
+IMS is an Image Management System based on 3 Privacy Status for each image which also provides the feature of upvote and downvote for each image
 * Public ( any unregisterd user can view the image ) - `0`
 * Restricted ( only visible to the registered users ) - `1`
 * Private ( only visible to the owner of the image ) -  `any numeric value except 0 & 1`
